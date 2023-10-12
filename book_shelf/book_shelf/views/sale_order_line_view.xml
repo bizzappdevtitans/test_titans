@@ -1,0 +1,18 @@
+<odoo>
+    <!-- inherited sale order line view view T-00419-->
+    <record id="sale_order_line_extension_form_view" model="ir.ui.view">
+        <field name="name">sale_order_line_extension</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath
+                expr="/form/sheet/notebook/page[@name='order_lines']/field[@name='order_line']/tree/field[@name='name']"
+                position="after"
+            >
+                <field name="max_day" />
+                <field name="min_day" />
+                <field name="late_fee" />
+            </xpath>
+        </field>
+        </record>
+</odoo>

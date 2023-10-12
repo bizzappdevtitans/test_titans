@@ -1,0 +1,25 @@
+<odoo>
+    <!-- inherited partner view T-00419-->
+    <record id="res_partner_extension" model="ir.ui.view">
+        <field name="name">res_partner_extension</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button
+                    name="action_open_book_shelf"
+                    type="object"
+                    class="oe_stat_button"
+                    icon="fa-book"
+                    attrs="{'invisible': [('book_shelf_count', '=', 0)]}"
+                >
+                            <field
+                        name="book_shelf_count"
+                        widget="statinfo"
+                        string="Book Shelf"
+                    />
+                        </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- inherited product template view T-00419-->
+    <record model="ir.ui.view" id="product_template_book_form_view">
+        <field name="name">product.template.book</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <span class="d-inline-block">
+                            <field name="book_ok" />
+                            <label for="book_ok" />
+                        </span>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_title')]" position="inside">
+                <div attrs="{'invisible':[('book_ok','=',False)]}">
+                    <label for="author" string="Author Name" />
+                    <field
+                        name="author"
+                        attrs="{'invisible':[('book_ok','=',False)]}"
+                    />
+            </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

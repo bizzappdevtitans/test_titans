@@ -1,0 +1,130 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!-- Tree view of book shelf T-00419-->
+    <record id="book_shelf_tree_view" model="ir.ui.view">
+        <field name="name">book.shelf.view</field>
+        <field name="model">book.shelf</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id" />
+                <field name="sequence" />
+                <field name="sale_order_ref" optional="hide" />
+            </tree>
+        </field>
+    </record>
+    <!-- form view of book shelf T-00419-->
+    <record id="book_shelf_form_view" model="ir.ui.view">
+        <field name="name">book.shelf.view</field>
+        <field name="model">book.shelf</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button
+                        name="action_confirm"
+                        type="object"
+                        string="confirm"
+                        attrs="{'invisible':[('state','!=','draft')]}"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="return_book"
+                        type="object"
+                        string="return"
+                        attrs="{'invisible':[('state','!=','confirm')]}"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_open_sale_order"
+                        type="object"
+                        string="open sale order"
+                        attrs="{'invisible':[('state','!=','process')]}"
+                        class="btn-primary"
+                    />
+                    <button
+                        name="action_cancel"
+                        type="object"
+                        string="cancel"
+                        attrs="{'invisible':[('state','in',['draft','done','cancel'])]}"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,process,confirm"
+                    />
+                </header>
+                <sheet>
+                    <widget
+                        name="web_ribbon"
+                        title="Done"
+                        bg_color="bg-success"
+                        attrs="{'invisible' :[('state','!=','done')]}"
+                    />
+                      <widget
+                        name="web_ribbon"
+                        title="cancel"
+                        bg_color="bg-danger"
+                        attrs="{'invisible' :[('state','!=','cancel')]}"
+                    />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="sequence" />
+                        </h1>
+                    </div>
+                    <group>
+
+                        <field name="partner_id" />
+                        <field
+                            name="sale_order_ref"
+                            attrs="{'invisible':[('state','=','draft')]}"
+                        />
+                    </group>
+                    <notebook>
+                        <page string="Book Shelf lines">
+                            <field name="book_shelf_line" mode='tree'>
+                                <form>
+                                    <field name="product_id" />
+                                    <field name="max_day" />
+                                    <field name="min_day" />
+                                    <field name="issue_date" />
+                                    <field name="qty" />
+                                    <field name="price" />
+                                    <field name="late_fee" />
+                                </form>
+                                <tree editable="bottom">
+                                    <field name="product_id" />
+                                    <field name="max_day" />
+                                    <field name="min_day" />
+                                    <field name="issue_date" />
+                                    <field name="qty" />
+                                    <field name="price" />
+                                    <field name="late_fee" />
+                                </tree>
+                            </field>
+                            <group
+                                name="note_group"
+                                col="6"
+                                class="mt-2 mt-md-0"
+                                attrs="{'invisible':[('state','in',['draft','process'])]}"
+                            >
+                                <group colspan="4">
+                                    <field name="note" />
+                                </group>
+                                <group class="oe_right" colspan="2">
+                                    <field name="total" />
+                                </group>
+                                <div class="oe_clear" />
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_book_shelf" model="ir.actions.act_window">
+            <field name="name">Book Shelf</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">book.shelf</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+</odoo>

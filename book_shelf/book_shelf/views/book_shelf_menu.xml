@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<odoo>
+    <!-- menu views T-00419-->
+    <menuitem id="menu_book" name="Book" />
+    <menuitem
+        id="menu_book_shelf"
+        name="Book Shelf"
+        parent="menu_book"
+        action="action_book_shelf"
+    />
+</odoo>

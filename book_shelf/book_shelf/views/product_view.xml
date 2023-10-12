@@ -1,0 +1,13 @@
+<odoo>
+    <!-- inherited product variant view T-00419-->
+<record model="ir.ui.view" id="product_form_view_book_shelf">
+            <field name="name">product.product.book.self</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <group name="group_general" position="inside">
+                    <field name="late_fee" />
+                </group>
+            </field>
+        </record>
+</odoo>

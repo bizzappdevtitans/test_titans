@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+book_shelf.access_book_shelf,access_book_shelf,book_shelf.model_book_shelf,base.group_user,1,1,1,1
+book_shelf.access_book_shelf_line,access_book_shelf_line,book_shelf.model_book_shelf_line,base.group_user,1,1,1,1

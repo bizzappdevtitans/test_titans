@@ -1,0 +1,21 @@
+{
+    "name": "Book Shelf",
+    "version": "15.0.0.0.1",
+    "summary": "Book management",
+    "description": """This module contains all the common features of Book Management.""",
+    "depends": ["base", "product", "sale", "sale_management"],
+    "data": [
+        "data/ir_sequence_data.xml",
+        "data/product_category_data.xml",
+        "security/ir.model.access.csv",
+        "views/product_view.xml",
+        "views/sale_order_view.xml",
+        "views/sale_order_line_view.xml",
+        "views/res_partner_view.xml",
+        "views/product_template_view.xml",
+        "views/book_shelf_view.xml",
+        "views/book_shelf_menu.xml",
+    ],
+    "installable": True,
+    "license": "LGPL-3",
+}
