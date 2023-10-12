@@ -35,6 +35,7 @@ class BookShelf(models.Model):
     )
     sale_order_ref = fields.Char(string="Sale Order Reference")
     total = fields.Float(string="Total")
+    note = fields.Char()
 
     def copy(self):
         """inherited copy method T-00426"""
