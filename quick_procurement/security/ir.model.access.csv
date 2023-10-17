@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+quick_procurement.access_product_procurement_purchase_order_wizard,access_product_procurement_purchase_order_wizard,quick_procurement.model_product_procurement_purchase_order_wizard,base.group_user,1,1,1,1

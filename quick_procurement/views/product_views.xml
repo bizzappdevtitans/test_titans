@@ -1,0 +1,13 @@
+<odoo>
+    <!-- Inherited product.product form view to add button #T00466 -->
+    <record id="product_normal_form_view" model="ir.ui.view">
+        <field name="name">product.product.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Quick procurement" type="action" name="%(quick_procurement.action_create_purchase_order_from_product)d"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
