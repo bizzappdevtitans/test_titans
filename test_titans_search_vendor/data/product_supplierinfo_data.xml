@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- xml record for sequence #T00466 -->
+        <record id="product_supplierinfo_sequence" model="ir.sequence">
+            <field name="name">product_supplierinfo_sequence</field>
+            <field name="code">product.supplierinfo</field>
+            <field name="prefix">100</field>
+            <field name="padding">1</field>
+        </record>
+
+    </data>
+</odoo>
