@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- Inherit sale.order view -->
+    <record id="inherited_sale_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <!-- added reference field -->
+            <xpath expr="//group[@name='order_details']" position="inside">
+                <field name="source_sale_order_id" />
+            </xpath>
+            <!-- added split quotation button -->
+            <xpath
+                expr="//form//header//button[@name='action_quotation_send']"
+                position="before"
+            >
+                <button
+                    name="%(split_sale_order.action_sale_order_wizard)d"
+                    string="Split Quotation"
+                    class="oe_highlight"
+                    states="draft"
+                    type="action"
+                />
+            </xpath>
+        </field>
+    </record>
+</odoo>
