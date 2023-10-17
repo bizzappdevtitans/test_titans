@@ -23,12 +23,12 @@ class SaleOrderSplitQuotation(models.TransientModel):
         """action for Split button"""
         if self.category == 1:
             sale = self.env["sale.order"].search([("name", "=", self.reference)])
-            _no_of_category = []
+            no_of_category = []
             for line in sale.order_line:
-                _no_of_category.append(line.product_id.categ_id)
-            _no_of_category = set(_no_of_category)
-            _no_of_category = list(_no_of_category)
-            for _number in _no_of_category:
+                no_of_category.append(line.product_id.categ_id)
+            no_of_category = set(no_of_category)
+            no_of_category = list(no_of_category)
+            for _number in no_of_category:
                 sale_order = self.env["sale.order"].create(  # noqa: F841
                     {
                         "partner_id": sale.partner_id.id,
