@@ -1,0 +1,12 @@
+<odoo>
+    <record id="product_template_inherited_form_view" model="ir.ui.view">
+        <field name="name">product.template.inherited.form.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+                <xpath expr="/form/header" position="inside">
+                        <button type="object" name="quick_procurement" string="Quick Procurement" class="btn-primary"/>
+                </xpath>
+        </field>
+    </record>
+</odoo>

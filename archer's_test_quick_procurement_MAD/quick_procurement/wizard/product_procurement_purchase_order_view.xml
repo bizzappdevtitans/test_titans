@@ -1,0 +1,27 @@
+<odoo>
+    <!-- inherited the product template view to add the wizard button in the header #T00466 -->
+    <record model="ir.ui.view" id="quick_procurement_form_view">
+        <field name="name">quick.procurement.form.view</field>
+        <field name="model">product.procurement.purchase.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="scheduled_date"/>
+                    </group>
+                    <footer>
+                        <button string="Confirm" type="object" name="fetch_sale_order" class="btn-primary"/>
+                        <button string="Discard" special="cancel" class="btn-secondary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_quick_procurement_wiz">
+        <field name="name">action.quick.procurement.wiz</field>
+        <field name="res_model">product.procurement.purchase.order</field>
+        <field name="view_mode">form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
