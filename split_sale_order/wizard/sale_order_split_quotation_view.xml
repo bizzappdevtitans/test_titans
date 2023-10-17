@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- action for wizards -->
+    <record id="action_sale_order_wizard" model="ir.actions.act_window">
+        <field name="name">split.sale.order</field>
+        <field name="res_model">sale.order.split.quotation</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    <!-- wizard form view -->
+    <record id="split_order_wizard_form" model="ir.ui.view">
+        <field name="name">split.wizard.form</field>
+        <field name="model">sale.order.split.quotation</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="reference" string="Order Reference" />
+                    <field name="category" string="Based on Category" />
+                </group>
+                <!-- added wizard insder button -->
+                <footer>
+                     <button
+                        string="Split"
+                        name="split_sale_order"
+                        type="object"
+                        class="oe_highlight"
+                    />
+                    <button class="btn btn-default" special="cancel" string="Cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
