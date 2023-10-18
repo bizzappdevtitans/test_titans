@@ -10,15 +10,15 @@
                         <field name="scheduled_date"/>
                     </group>
                     <footer>
-                        <button string="Confirm" type="object" name="fetch_sale_order" class="btn-primary"/>
-                        <button string="Discard" special="cancel" class="btn-secondary"/>
+                        <button string="Confirm" type="object" name="generate_po_based_on_quantity" class="btn-primary"/>
+                        <button string="Cancel" special="cancel" class="btn-secondary"/>
                     </footer>
                 </sheet>
             </form>
         </field>
     </record>
     <record model="ir.actions.act_window" id="action_quick_procurement_wiz">
-        <field name="name">action.quick.procurement.wiz</field>
+        <field name="name">Quick Procurement</field>
         <field name="res_model">product.procurement.purchase.order</field>
         <field name="view_mode">form</field>
         <field name="type">ir.actions.act_window</field>
