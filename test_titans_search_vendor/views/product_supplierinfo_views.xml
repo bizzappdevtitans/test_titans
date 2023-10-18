@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <data>
                     <xpath expr="//field[@name='name']" position="before">
-                        <field name="sequence"/>
+                        <field name="vendor_number"/>
                     </xpath>
                 </data>
             </field>

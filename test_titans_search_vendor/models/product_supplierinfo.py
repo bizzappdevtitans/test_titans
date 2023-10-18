@@ -6,14 +6,14 @@ from odoo import models, fields, api
 class ProductSupplierinfo(models.Model):
     _inherit = 'product.supplierinfo'
 
-    # Integer field for sequence #T00466
-    sequence = fields.Integer(string="Sequence")
+    # Integer field for vendor_number #T00466
+    vendor_number = fields.Integer(string="Vendor Number", default=1000)
 
     @api.model
-    # create method for sequence #T00466
+    # create method for vendor_number #T00466
     def create(self, values):
-        """this sequence is auto fill up field while create record #T00466"""
-        values['sequence'] = self.env['ir.sequence'].next_by_code("product.supplierinfo")
+        """this vendor_number is auto fill up field while create record #T00466"""
+        values['vendor_number'] = self.env['ir.sequence'].next_by_code("product.supplierinfo")
         return super(ProductSupplierinfo, self).create(values)
 
     # name_get method for many2one field #T00466

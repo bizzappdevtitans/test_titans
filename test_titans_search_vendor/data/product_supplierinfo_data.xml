@@ -10,5 +10,13 @@
             <field name="padding">1</field>
         </record>
 
+        <!-- record for vendor price list #T00466-->
+        <record id="vendor_01" model="product.supplierinfo">
+            <field name="vendor_number">1001</field>
+            <field name="name" ref="base.res_partner_3"/>
+            <field name="min_qty">10</field>
+            <field name="price">15</field>
+        </record>
+
     </data>
 </odoo>
