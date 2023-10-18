@@ -8,5 +8,6 @@ from odoo import fields, models
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    # add a new as per requirement
-    new_sequence = fields.Integer(string="Sequence")
+    new_sequence = fields.Integer(
+        string=" Sequence",
+    )

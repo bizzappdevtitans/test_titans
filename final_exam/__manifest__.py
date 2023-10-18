@@ -8,7 +8,11 @@
     "summary": "Vender Management for All Bussiness",
     "website": "http://www.Bizzappdev.com",
     "depends": ["base", "product", "sale_management"],
-    "data": ["views/product_supplierinfo_views.xml"],
+    "data": [
+        "views/product_supplierinfo_views.xml",
+        "views/product_template.xml",
+        "views/sale_order_views.xml",
+    ],
     "installable": True,
     "application": True,
     "license": "LGPL-3",
