@@ -12,6 +12,7 @@ class ProductProcurementPurchaseOrder(models.TransientModel):
     def _calculate_product_quantity(self, self_id):
         """declaring this method as the code block belw is used to
         calculate the final_value(total qty to be purchased, if any) #T00466"""
+        print("_calculate_product_quantity")
         sale_order_products = (
             self.env["sale.order"]
             .search([("date_order", ">", self.scheduled_date)])
@@ -58,6 +59,7 @@ class ProductProcurementPurchaseOrder(models.TransientModel):
     def _prepare_po_template_vals(self, variant_ids, varaint_qty):
         """this method wil be called when we are needed to create a purchase order
         for a product.template record with multiple variants #T00466"""
+        print("_prepare_po_template_vals")
         values = []
         for variant in range(len(variant_ids)):
             if varaint_qty[variant] > 0:
@@ -71,11 +73,18 @@ class ProductProcurementPurchaseOrder(models.TransientModel):
                         },
                     )
                 )
-        return values
+        if values:
+            return values
+        raise ValidationError(
+            "Cannot create purchase order, already have the required amount"
+        )
 
     def _create_po_template(self, vendor, variant_ids, varaint_qty):
         """when the input self_id is a template with multiple variants this method
         will be called to create the required purchase.order #T00466"""
+        print("_create_po_template")
+        print(variant_ids)
+        print(varaint_qty)
         self.env["purchase.order"].create(
             {
                 "partner_id": vendor,
@@ -87,6 +96,7 @@ class ProductProcurementPurchaseOrder(models.TransientModel):
         """when the input self_id is a template with only 1 variant or the self_id
         is already a variant(product.product) record this method will be called to
         create the required purchase.order #T00466"""
+        print("_create_po_variant")
         self.env["purchase.order"].create(
             {
                 "partner_id": vendor,
@@ -104,6 +114,7 @@ class ProductProcurementPurchaseOrder(models.TransientModel):
         """this method is used to create a purchase order if the final_value i.e.
         sale_qty - purchase_qty is not a negative value, it will be called upon
         pressing the confirm button in the wizard #T00466"""
+        print("prepare_po_quantities")
         model = self.env.context.get("active_model")
         self_id = self.env.context.get("active_id")
         partner = self.env["res.partner"].search([]).ids
@@ -123,7 +134,7 @@ class ProductProcurementPurchaseOrder(models.TransientModel):
 
                 if not vendor:
                     return self._create_po_template(
-                        partner.ids[0], variant_ids, varaint_qty
+                        partner[0], variant_ids, varaint_qty
                     )
                 return self._create_po_template(vendor.ids[0], variant_ids, varaint_qty)
             # if there are no vairants the product_variant_id is used as self_id #T00466
@@ -134,7 +145,11 @@ class ProductProcurementPurchaseOrder(models.TransientModel):
             final_value = self._calculate_product_quantity(self_id)
         elif model == "product.product":
             final_value = self._calculate_product_quantity(self_id)
-
+        vendor = (
+            self.env["product.product"]
+            .browse([self_id])
+            .seller_ids.mapped("name")
+        )
         if final_value > 0:
             if not vendor.ids:
                 return self._create_po_variant(partner.ids[0], self_id, final_value)
